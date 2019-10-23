@@ -1,0 +1,4 @@
+1. Use the *.m files to process the original Cornell dataset.
+2. Change the dirs/paths in the *.m accoding your configurations
+
+https://github.com/ivalab/grasp_multiObject_multiGrasp/tree/master/data/scripts

@@ -1,0 +1,9 @@
+To update the dataset, please delete the file: ./dataset/grasp/cache/grasp_gt_rectdb.pkl
+
+Todo: modify the grasp_dataset.py to handle both train and test cases
+
+train: $python3 train.py
+
+test: $python3 demo.py
+
+
