@@ -31,7 +31,7 @@ $ python3 train.py --epochs 100 --lr 0.0001 --batch_size 8
 $ python3 demo.py
 ```
 
-### Acknowledgment
+# Acknowledgment
 
 This repo borrows some of code from
 https://github.com/ivalab/grasp_multiObject_multiGrasp
