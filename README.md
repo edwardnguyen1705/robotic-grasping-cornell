@@ -14,8 +14,8 @@ In this project, Deep Convolutional Neural Networks (DCNNs) is used to simultano
 
 ### 1. Data preprocessing
 
-+Download [Cornell Dataset](http://pr.cs.cornell.edu/grasping/rect_data/data.php) 
-+Run `dataPreprocessingTest_fasterrcnn_split.m` (please modify paths according to your structure)  
++ Download [Cornell Dataset](http://pr.cs.cornell.edu/grasping/rect_data/data.php) 
++ Run `dataPreprocessingTest_fasterrcnn_split.m` (please modify paths according to your structure)  
 
 ### 2. Training
 
