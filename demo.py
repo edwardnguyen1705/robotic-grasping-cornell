@@ -79,7 +79,7 @@ inv_normalize = transforms.Normalize(
 
 batch_size = 1
 dataset = GraspDataset(dataset_name, image_set, dataset_path)
-test_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+test_loader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
 
 with torch.no_grad():
     for i, (img, gt_rect) in enumerate(test_loader):
