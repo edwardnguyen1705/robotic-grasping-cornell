@@ -86,7 +86,6 @@ def main(args):
     
 def parse_arguments(argv):
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, help='path to pretrained model', default='./models')
     parser.add_argument('--epochs', type=int, help='number of epochs', default=100)
     parser.add_argument('--lr', type=float, help='learning rate', default=0.0001)
     parser.add_argument('--batch-size', type=int, help='batch size', default=1)
