@@ -1,12 +1,12 @@
 import os
 from available_gpus import get_available_gpus
 
-gpus = get_available_gpus(mem_lim=1024)
+gpus = get_available_gpus(mem_lim=2024)
 if len(gpus):
     if len(gpus) == 1:
         os.environ['CUDA_VISIBLE_DEVICES'] = gpus[0]
     else:
-        gpu_ids_str = ",".join(gpus_available)
+        gpu_ids_str = ",".join(gpus)
         print("gpus_str: {}".format(gpu_ids_str))
         os.environ['CUDA_VISIBLE_DEVICES'] = gpu_ids_str
         
@@ -26,18 +26,23 @@ from grasp_dataset import GraspDataset
 from network import GraspNet
 
 ar = np.array
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def load_model(gpu_ids):
+    global device 
     num_gpus = len(gpu_ids)     
     model = GraspNet()
     state_dict = torch.load('./models/model.ckpt', map_location=lambda storage, loc: storage)
     model.load_state_dict(state_dict)
+    
     if num_gpus > 1:
-        model = nn.DataParallel(model_torch).to(device)
+        device = torch.device('cuda')
+        model = nn.DataParallel(model).to(device)
     else: 
-        _device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-        model.to(_device)
+        if num_gpus == 1:
+            device = torch.device("cuda:{}".format(gpu_ids[0]))
+        else:
+            device = torch.device("cpu")
+        model.to(device)
     
     model.eval()
     return model
