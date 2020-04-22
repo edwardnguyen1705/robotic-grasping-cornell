@@ -1,7 +1,7 @@
 import os
 from available_gpus import get_available_gpus
 
-gpus = get_available_gpus(mem_lim=2024)
+gpus = get_available_gpus(mem_lim=1024)
 if len(gpus):
     if len(gpus) == 1:
         os.environ['CUDA_VISIBLE_DEVICES'] = gpus[0]
@@ -31,8 +31,15 @@ def load_model(gpu_ids):
     global device 
     num_gpus = len(gpu_ids)     
     model = GraspNet()
-    state_dict = torch.load('./models/model.ckpt', map_location=lambda storage, loc: storage)
-    model.load_state_dict(state_dict)
+    
+    # For old model.ckpt
+    # state_dict = torch.load('./models/model.ckpt', map_location=lambda storage, loc: storage)
+    # model.load_state_dict(state_dict)
+    
+    # https://pytorch.org/tutorials/beginner/saving_loading_models.html
+    checkpoint = torch.load('./models/model_99.ckpt', map_location=lambda storage, loc: storage)
+    model.load_state_dict(checkpoint['model'])
+
     
     if num_gpus > 1:
         device = torch.device('cuda')
