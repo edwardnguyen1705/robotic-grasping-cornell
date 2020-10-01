@@ -75,7 +75,7 @@ def main(args):
             loss.backward()
             optimizer.step()
 
-    save_name = os.path.join(args.models, 'model_{}.ckpt'.format(epoch))
+    save_name = os.path.join(args.model_path, 'model_{}.ckpt'.format(epoch))
     torch.save({
       'epoch': epoch + 1,
       'model': model.state_dict(), # 'model' should be 'model_state_dict'
@@ -89,6 +89,7 @@ def parse_arguments(argv):
     parser.add_argument('--epochs', type=int, help='number of epochs', default=1)
     parser.add_argument('--lr', type=float, help='learning rate', default=0.0001)
     parser.add_argument('--batch-size', type=int, help='batch size', default=1)
+    parser.add_argument('--model-path', type=str, help='path to save model', default='./models')
     
     return parser.parse_args(argv)
 
